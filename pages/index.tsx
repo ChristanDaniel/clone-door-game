@@ -10,8 +10,8 @@ const Home: NextPage = () => {
   return (
     <div>
       <Presente />
-      <Porta porta={p1}/>
-      <Porta porta={p2}/>
+      <Porta porta={p1} onChange={novaPorta => console.log(novaPorta)}/>
+      <Porta porta={p2} onChange={novaPorta => console.log(novaPorta)}/>
     </div>
   )
 }
