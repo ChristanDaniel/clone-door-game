@@ -11,12 +11,15 @@
 
 .Estrutura {
   display: flex;
+  flex-direction: column-reverse;
   flex-grow: 1;
   width: 90%;
 
   border-left: 5px solid brown;
   border-right: 5px solid brown;
   border-top: 5px solid brown;
+
+  background-color: #0005;
 }
 
 .Porta {

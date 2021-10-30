@@ -2,16 +2,22 @@ import type { NextPage } from 'next'
 import Presente from '../src/components/Presente'
 import Porta from '../src/components/Porta'
 import PortaModel from '../src/Model/Porta'
+import { useState } from 'react'
+import { atualizarPortas, criarPortas } from '../src/functions/Porta'
 
 const Home: NextPage = () => {
-  const p1 = new PortaModel(1)
-  const p2 = new PortaModel(2)
+  const [portas, setPortas] = useState(criarPortas(3,2))
 
   return (
     <div>
       <Presente />
-      <Porta porta={p1} onChange={novaPorta => console.log(novaPorta)}/>
-      <Porta porta={p2} onChange={novaPorta => console.log(novaPorta)}/>
+      {portas.map(porta => {
+        return <Porta 
+        key={porta.numero}
+        value={porta} 
+        onChange={novaPorta => setPortas(atualizarPortas(portas, novaPorta))}
+        />
+      })}
     </div>
   )
 }
