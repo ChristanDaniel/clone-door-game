@@ -1,15 +1,24 @@
 import type { NextPage } from "next";
-import Presente from "../src/components/Presente";
-import Porta from "../src/components/Porta";
-import PortaModel from "../src/Model/Porta";
-import { useState } from "react";
-import { atualizarPortas, criarPortas } from "../src/functions/Porta";
+import Porta from "../../../src/components/Porta";
+import { useEffect, useState } from "react";
+import { atualizarPortas, criarPortas } from "../../../src/functions/Porta";
 import Link from "next/link";
 
-import styles from "../styles/Jogo.module.css";
+import styles from "../../../styles/Jogo.module.css";
+import { useRouter } from "next/dist/client/router";
+import PortaModel from "../../../src/Model/Porta";
 
 const Jogo: NextPage = () => {
-  const [portas, setPortas] = useState(criarPortas(16, 2));
+  const router = useRouter()
+
+  const [portas, setPortas] = useState<PortaModel[]>([]);
+
+  useEffect(() => {
+    const portas = +router.query.portas
+    const temPresente = +router.query.temPresente
+
+    setPortas(criarPortas(portas, temPresente))
+  }, [router?.query])
 
   return (
     <div className={styles.jogo}>
