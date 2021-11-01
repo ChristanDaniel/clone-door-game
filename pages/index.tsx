@@ -1,11 +1,12 @@
 import type { NextPage } from 'next'
 import Cartao from '../src/components/Cartao'
 
+import styles from '../styles/home.module.css'
+
 const Home: NextPage = () => {
 
   return (
-    <div>
-      <h1>Formulário</h1>
+    <div className={styles.home}>
       <Cartao />
     </div>
   )
