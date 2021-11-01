@@ -3,7 +3,7 @@ import styles from './cartao.module.css'
 
 interface CartaoProps {
     bgcolor?: string
-    children: ReactNode
+    children?: ReactNode
 }
 
 export default function Cartao(props: CartaoProps) {
