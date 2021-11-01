@@ -7,6 +7,7 @@ interface EntradaNumericaProps {
 }
 
 export default function EntradaNumerica(props: EntradaNumericaProps) {
+    
     return (
         <div className={styles.entradaNumerica}>
             <span className={styles.text}>{props.text}</span>
