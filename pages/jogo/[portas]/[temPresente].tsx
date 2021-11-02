@@ -12,6 +12,16 @@ const Jogo: NextPage = () => {
   const router = useRouter()
 
   const [portas, setPortas] = useState<PortaModel[]>([]);
+  const [valoresValidos, setValoresValidos] = useState(false);
+
+  useEffect(() => {
+    const portas = +router.query.portas
+    const temPresente = +router.query.temPresente
+
+    const qtdePresenteValido = temPresente >= 1 && temPresente <= portas
+
+    setValoresValidos(qtdePresenteValido)
+  }, [portas])
 
   useEffect(() => {
     const portas = +router.query.portas
@@ -23,7 +33,7 @@ const Jogo: NextPage = () => {
   return (
     <div className={styles.jogo}>
       <div className={styles.portas}>
-        {portas.map((porta) => {
+        { valoresValidos ? portas.map((porta) => {
           return (
             <Porta
               key={porta.numero}
@@ -33,7 +43,9 @@ const Jogo: NextPage = () => {
               }
             />
           );
-        })}
+        })
+         : <h1>Valores Inválidos... Por favor tente novamente.</h1>
+        }
       </div>
       <div className={styles.botoes}>
         <Link href="/" passHref>
